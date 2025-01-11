@@ -1,0 +1,66 @@
+<div class="center-container"><mat-card class="example-card container">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Cadastrar Abastecimento</mat-card-title>
+            <mat-card-subtitle>Adicione um novo abastecimento</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="example-container">
+                <form class="example-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data e Hora</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dataHora">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="form.get('dataHora')?.hasError('required')">Data e hora são
+                            obrigatórias</mat-error>
+                        <mat-error *ngIf="form.get('dataHora')?.hasError('dataInvalida')">Data e hora inválidas. Não
+                            pode ser
+                            data
+                            futura.</mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Placa</mat-label>
+                        <input matInput type="text" formControlName="placa">
+                        <mat-error *ngIf="form.get('placa')?.hasError('required')">Placa é obrigatória</mat-error>
+                        <mat-error *ngIf="form.get('placa')?.hasError('pattern')">Placa inválida. Formato AAA-1234 ou
+                            ABC1234.</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Quilometragem</mat-label>
+                        <input matInput type="number" formControlName="quilometragem">
+                        <mat-error *ngIf="form.get('quilometragem')?.hasError('required')">Quilometragem é
+                            obrigatória</mat-error>
+                        <mat-error *ngIf="form.get('quilometragem')?.hasError('min')">Quilometragem deve ser maior que
+                            zero.</mat-error>
+                        <mat-error *ngIf="form.get('quilometragem')?.hasError('quilometragemInvalida')">Quilometragem
+                            inválida. Deve
+                            ser
+                            maior que a última registrada para este veículo.</mat-error>
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Valor Total</mat-label>
+                        <input matInput currencyMask formControlName="valorTotal"
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                        <mat-error *ngIf="form.get('valorTotal')?.hasError('required')">Valor total é
+                            obrigatório</mat-error>
+                        <mat-error *ngIf="form.get('valorTotal')?.hasError('min')">Valor total deve ser maior que
+                            zero.</mat-error>
+                    </mat-form-field>
+
+                    <button mat-fab extended color="primary" type="submit" [disabled]="form.invalid || isLoading">
+                        Salvar
+                        <mat-spinner *ngIf="isLoading" diameter="20" [style.marginLeft.px]="10"></mat-spinner>
+                    </button>
+                </form>
+            </div>
+
+
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,40 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-container form {
+  margin-bottom: 20px;
+}
+
+.example-container form > * {
+  margin: 5px 0;
+}
+.example-card {
+  max-width: 400px;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh; /* Ensures the container fills the viewport height */
+  margin: 0; /*reset margin */
+  padding: 0; /*reset padding */
+}
+
+mat-card {
+  width: 400px; /* Adjust width as needed */
+  /*Add any other specific styles for mat-card*/
+}
+
+/*Optional Responsive Styles*/
+@media (max-width: 768px) {
+  mat-card {
+    width: 90%; /* Adjust width for smaller screens */
+  }
+}

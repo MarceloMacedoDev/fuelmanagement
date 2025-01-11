@@ -1,0 +1,78 @@
+/* Estilos básicos para a tabela */
+table {
+  width: 100%; /* A tabela ocupa 100% da largura do contêiner */
+  border-collapse: collapse; /* Remove o espaçamento entre as bordas das células */ 
+  table-layout: auto; /* Permite que as colunas se ajustem ao conteúdo */
+  overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+
+  /* Estilização da barra de rolagem (opcional) */
+  /* ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
+}
+
+th, td {
+  padding: 10px;  
+  text-align: left;  
+}
+
+th {
+  background-color: #f2f2f2; /* Adiciona um fundo ao cabeçalho */
+  font-weight: bold; /* Torna o texto do cabeçalho em negrito */
+}
+
+/* Media Queries para responsividade (opcional, mas recomendado) */
+
+/* Para telas menores que 768px (ajuste conforme necessário) */
+@media (max-width: 768px) {
+  /* Você pode adicionar estilos específicos para telas menores aqui. Por exemplo: */
+  table th, table td {
+    font-size: 12px; /* Diminui o tamanho da fonte */
+    padding: 5px; /* Diminui o preenchimento */
+  }
+}
+
+
+/* Media Queries para telas menores que 480px (ajuste conforme necessário) */
+@media (max-width: 480px) {
+  /* Você pode adicionar estilos específicos para telas menores aqui. Por exemplo: */
+  table th, table td {
+    font-size: 10px; /* Diminui ainda mais o tamanho da fonte */
+    padding: 3px; /* Diminui ainda mais o preenchimento */
+  }
+}
+
+
+/* Estilos para melhorar a experiência do usuário */
+table {
+  font-family: sans-serif; /* Use uma fonte mais legível */
+ 
+}
+
+/* Estilos opcionais para a barra de rolagem (substitua pelo seu próprio estilo se preferir) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} */

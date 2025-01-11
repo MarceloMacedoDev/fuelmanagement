@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  front:
+    build: ./abastecimento-front
+    ports:
+      - "4520:4520"
+    networks:
+      - abastecimento-net
+    depends_on:
+      - api
+
+  api:
+    build: ./abastecimento-api
+    ports:
+      - "8088:8088"
+    networks:
+      - abastecimento-net
+
+networks:
+  abastecimento-net:
+    driver: bridge
