@@ -57,7 +57,86 @@ O projeto segue o padrão Clean Architecture, dividido em três camadas:
 
 3. **Infrastructure Layer:** Acesso ao banco de dados usando Spring Data JPA. `AbastecimentoRepository.java` (interface), `AbastecimentoRepositoryImpl.java` (implementação), `AbastecimentoMapper.java` (mapeamento DTO/Entidade). `AbastecimentoRepository` define a interface de acesso aos dados. `AbastecimentoRepositoryImpl` implementa a interface, utilizando Spring Data JPA para interagir com o banco de dados. `AbastecimentoMapper` mapeia os objetos de domínio (`Abastecimento`) para os objetos de transferência de dados (`AbastecimentoDTO`) usados na comunicação com o frontend.
 
+## Docker Compose
 
+O arquivo `docker-compose.yaml` define os serviços para o frontend e o backend, gerenciando seus containers e dependências.  A rede `abastecimento-net` permite a comunicação entre os containers. `depends_on` garante que o frontend só seja iniciado depois que o backend estiver disponível.
+
+```yaml
+version: '3'
+
+services:
+  front:
+    build: ./abastecimento-front
+    ports:
+      - "4520:4520"
+    networks:
+      - abastecimento-net
+    depends_on:
+      - api
+
+  api:
+    build: ./abastecimento-api
+    ports:
+      - "8088:8088"
+    networks:
+      - abastecimento-net
+
+networks:
+  abastecimento-net:
+    driver: bridge
+```
+
+## Instalação e Execução
+
+*(Instruções detalhadas, expandidas e melhoradas)*
+
+### Pré-requisitos
+
+* Java 17 JDK (ou superior)
+* Node.js 16.20.2 (ou superior) e npm (ou yarn)
+* Git
+* Maven (para o backend)
+* Docker e Docker Compose (opcional, mas recomendado)
+
+### Sem Docker
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/MarceloMacedoDev/fuelmanagement.git
+   ```
+
+2. **Backend:**
+    * Navegue até o diretório `abastecimento-api`.
+    * Execute `mvn clean install` para construir o projeto. Isso irá baixar as dependências, compilar o código e gerar o arquivo JAR executável.
+    * Execute `java -jar target/abastecimento-api-*.jar` para iniciar o Spring Boot.  O console H2 estará disponível em `http://localhost:8088/h2-console` (acesso com usuário `sa` e senha vazia).
+
+3. **Frontend:**
+    * Navegue até o diretório `abastecimento-front`.
+    * Execute `npm install` para instalar as dependências.
+    * Execute `ng serve` para iniciar o Angular. O aplicativo estará acessível em `http://localhost:4200`.
+
+
+### Com Docker
+
+1. **Clone o repositório:** (como acima)
+
+2. **Construção e execução com Docker Compose:**
+   ```bash
+   cd fuelmanagement
+   docker-compose up -d --build
+   ```
+   Isso irá construir as imagens Docker para o frontend e o backend e iniciar os containers em background.
+
+3. **Acesso:**
+   * Backend: `http://localhost:8088`
+   * Frontend: `http://localhost:4520`
+   * Console H2: `http://localhost:8088/h2-console` (usuário `sa`, senha vazia)
+
+4. **Parar os containers:**
+   ```bash
+   docker-compose down
+   ```
+   
 ## Estrutura de Diretórios (detalhada com responsabilidades)
 
 ### Frontend (`abastecimento-front`)
@@ -223,4 +302,4 @@ networks:
 * **Segurança:** Em um ambiente de produção, é crucial implementar medidas de segurança adequadas, incluindo autenticação e autorização.
 * **Escalabilidade:** Para maior escalabilidade, considere o uso de um banco de dados relacional mais robusto e soluções de balanceamento de carga.
 
-This comprehensive README provides a detailed overview of the Fuel Management application, its architecture, functionality, and installation instructions.  The improved structure and added details will make it easier for developers to understand and work with the project.
+ 
