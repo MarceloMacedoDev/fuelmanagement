@@ -15,11 +15,11 @@ Este projeto é uma API REST para gerenciar abastecimentos de veículos, constru
 Se o código estiver em um repositório Git, clone-o usando o comando:
 
 ```bash
-git clone https://github.com/MarceloMacedoDev/abastecimento-api.git
+git clone https://github.com/MarceloMacedoDev/fuelmanagement.git 
 ```
 ## **Navegue até o diretório do projeto:**
 ```bash
- cd fuelmanagement
+ cd fuelmanagement/abastecimento-api
 ```
 ## Inicializando o Banco de Dados H2
 O aplicativo utiliza o banco de dados H2 em memória. O console H2 está habilitado e será iniciado automaticamente com a aplicação. Não é necessário nenhum passo adicional para configurar o banco de dados.
