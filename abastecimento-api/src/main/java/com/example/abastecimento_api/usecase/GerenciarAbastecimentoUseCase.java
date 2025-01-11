@@ -66,4 +66,14 @@ public class GerenciarAbastecimentoUseCase {
                     "Valor total deve ser maior que zero.");
         }
     }
+
+    public Integer getUltimaQuilometragem(String placa) {
+        Abastecimento abastecimento = abastecimentoService.getUltimoAbastecimentoPorPlaca(placa);
+        if (abastecimento != null) {
+            return abastecimento.getQuilometragem();
+        } else {
+            return 0;
+        }
+    }
+
 }

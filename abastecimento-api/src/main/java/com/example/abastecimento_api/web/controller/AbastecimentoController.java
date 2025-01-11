@@ -50,4 +50,10 @@ public class AbastecimentoController {
         abastecimentoService.removerAbastecimento(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/ultimaQuilometragem/{placa}")
+    public ResponseEntity<Integer> getUltimaQuilometragem(@PathVariable String placa) {
+        Integer ultimaQuilometragem = abastecimentoService.getUltimaQuilometragem(placa);
+        return ResponseEntity.ok(ultimaQuilometragem);
+    }
 }

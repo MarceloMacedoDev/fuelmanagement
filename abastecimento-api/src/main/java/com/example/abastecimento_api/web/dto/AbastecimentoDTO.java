@@ -14,14 +14,14 @@ import lombok.Setter;
 public class AbastecimentoDTO {
     private Long id;
     private String placa;
-    private double quilometragem;
+    private Integer quilometragem;
     private LocalDateTime dataHora;
     private double valorTotal;
 
     public AbastecimentoDTO() {
     }
 
-    public AbastecimentoDTO(Long id, String placa, double quilometragem, LocalDateTime dataHora, double valorTotal) {
+    public AbastecimentoDTO(Long id, String placa, Integer quilometragem, LocalDateTime dataHora, double valorTotal) {
         this.id = id;
         this.placa = placa;
         this.quilometragem = quilometragem;
@@ -37,11 +37,11 @@ public class AbastecimentoDTO {
         this.id = id;
     }
 
-    public double getQuilometragem() {
+    public Integer getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(double quilometragem) {
+    public void setQuilometragem(Integer quilometragem) {
         this.quilometragem = quilometragem;
     }
 

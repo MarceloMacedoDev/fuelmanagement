@@ -105,7 +105,6 @@ export class AbastecimentoService {
    *          Retorna 0 se houver um erro ao obter a quilometragem.
    * @throws Error se houver falha na requisição à API.
    */
-
   getUltimaQuilometragem(placa: string): Observable<number> {
     return this.http.get<number>(`${this.apiUrl}/abastecimentos/ultimaQuilometragem/${placa}`).pipe(
       map(quilometragem => quilometragem),

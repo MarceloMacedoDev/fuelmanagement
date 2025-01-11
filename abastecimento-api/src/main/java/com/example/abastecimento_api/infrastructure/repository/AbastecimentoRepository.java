@@ -12,4 +12,6 @@ public interface AbastecimentoRepository extends JpaRepository<Abastecimento, Lo
 
     public Page<Abastecimento> findByPlaca(Pageable pageable, String placa);
 
+    public Abastecimento findTopByPlacaOrderByDataHoraDesc(String placa);
+
 }

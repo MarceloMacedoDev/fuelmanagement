@@ -82,7 +82,7 @@ public class AbastecimentoService {
     }
 
     public void remover(Long id) {
-        if (id == null) {
+        if (id == null || id<=0) {
             throw new FuelingValidationException("ID é obrigatório");
         }
         try {
@@ -90,5 +90,9 @@ public class AbastecimentoService {
         } catch (Exception e) {
             throw new FuelingValidationException("Erro ao remover abastecimento: " + e.getMessage());
         }
+    }
+
+    public Abastecimento getUltimoAbastecimentoPorPlaca(String placa) {
+        return abastecimentoRepository.findTopByPlacaOrderByDataHoraDesc(placa);
     }
 }

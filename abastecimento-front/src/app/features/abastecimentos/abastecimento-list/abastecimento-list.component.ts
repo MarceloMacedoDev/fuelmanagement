@@ -14,7 +14,7 @@ import { AbastecimentoService } from 'src/app/core/services/abastecimento-servic
   styleUrls: ['./abastecimento-list.component.css']
 })
 export class AbastecimentoListComponent {
-  displayedColumns: string[] = ['placa', 'quilometragem', 'dataHora', 'valorTotal'];
+  displayedColumns: string[] = ['placa', 'quilometragem', 'dataHora', 'valorTotal', 'acao'];
   dataSource = new MatTableDataSource<Abastecimento>([]);
   isLoading = false;
   pageSizeOptions: number[] = [5, 10, 15];
@@ -90,6 +90,33 @@ export class AbastecimentoListComponent {
     this._snackBar.open(msg, 'Fechar', {
       duration: 3000, // Duração em milissegundos (3 segundos) 
       verticalPosition: 'top', // Adiciona uma classe CSS customizada (opcional)
+    });
+  }
+
+  deleteAbastecimento(id: number) {
+    this.abastecimentoService.removerAbastecimento(id).subscribe({
+      next: () => {
+        this.abastecimentoService.removerAbastecimento(id).subscribe();
+        this.showSnackBar('Abastecimento removido com sucesso!');
+        this.searchAbastecimentos().subscribe({
+          next: (response: AbastecimentoPageResponse) => {
+            this.dataSource = new MatTableDataSource(response.content);
+            this.totalElements = response.totalElements;
+            this.totalPages = response.totalPages;
+            this.dataSource.paginator = this.paginator;
+            this.isLoading = false;
+          },
+          error: (error) => {
+            console.error('Erro ao listar abastecimentos:', error);
+            this.isLoading = false;
+            this.showSnackBar('Erro ao listar abastecimentos:' + error);
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Erro ao remover abastecimento:', error);
+        this.showSnackBar('Erro ao remover abastecimento: ' + error);
+      }
     });
   }
 }
