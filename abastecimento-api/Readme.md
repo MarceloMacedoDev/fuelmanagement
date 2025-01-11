@@ -42,7 +42,7 @@ A aplicação iniciará na porta 8080. Você verá mensagens de log no console, 
 ## Acesso ao Console H2
 O console H2 está disponível em: ***http://localhost:8080/h2-console***
 
-- JDBC URL: jdbc:h2:mem:testdb
+- JDBC URL: jdbc:h2:mem:abastecimento-api
 - Usuário: sa
 - Senha: (deixe em branco)
 ## Testando a API
