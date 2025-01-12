@@ -40,7 +40,7 @@ mvn spring-boot:run
 A aplicação iniciará na porta 8088. Você verá mensagens de log no console, incluindo as consultas SQL geradas pelo Spring Data JPA (devido a spring.jpa.show-sql=true).
 
 ## Acesso ao Console H2
-O console H2 está disponível em: ***http://localhost:8080/h2-console***
+O console H2 está disponível em: ***http://localhost:8088/h2-console***
 
 - JDBC URL: jdbc:h2:mem:abastecimento-api
 - Usuário: sa
